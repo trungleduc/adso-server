@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+
+  redis:
+    image: "redis:buster"
+
+    command: redis-server
+
+    ports:
+     - "6379:6379"
+
+    volumes:
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+
+  web:
+    image: adso_server
+    build: .
+    depends_on:
+      - redis
+    links:
+      - redis
+    ports:
+      - "8000:8000"
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/opt/backend  
+    environment:
+      REDIS_URL: redis
+      REDIS_PORT: 6379
+
+  worker:
+    image: adso_server
+    depends_on:
+      - web
+
+    command:  celery -A adso_server worker -l info
+    volumes:
+      - .:/opt/backend  
+    environment:
+      REDIS_URL: redis
+      REDIS_PORT: 6379
+      C_FORCE_ROOT: "true"
