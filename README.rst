@@ -11,7 +11,7 @@ Docker Engine and Docker Compose (https://docs.docker.com/compose/install/)
 
 How to start server
 --------------------
-Run `docker-compose up` in root folder of project.
+Run code::`docker-compose up` in root folder of project.
 
 The API and Websocket server will listen on same address *SERVER_IP:8000*, here *SERVER_IP* is the IP address of the server, for local test it should be *127.0.0.1*
 
@@ -20,14 +20,14 @@ How to use adso-server
 
 REST Api schema : 
 *************************
-There is only one API at URI `http://SERVER_IP:8000/api-token-auth/`, this API is used to obtain the access token to connect with Websocket server. Client need to send POST request with username and password, default is **admin** and **admin**
+There is only one API at URI code::`http://SERVER_IP:8000/api-token-auth/`, this API is used to obtain the access token to connect with Websocket server. Client need to send POST request with username and password, default is **admin** and **admin**
 
 See *openapi-schema.yml* file for the complete schema.
 
 Websocket communication : 
 *************************
 
-Websocket server is available at `ws://SERVER_IP:8000/ws/notification`
+Websocket server is available at code::`ws://SERVER_IP:8000/ws/notification`
 
 List of message accepted by server :
 
@@ -35,7 +35,7 @@ List of message accepted by server :
 
   * **Format** : :js:`{action: "Authentication", payload: { token : string, modelID: string }}`
   
-  * **Usage** : this message need to be sent by client after connecting to server in order to get the structure (inputs/outputs) of current simulation model. Here `token` is the access token obtained by `api-token-auth` API, `modelID` is the id of simulation model, for this demo it is `ProjectileMotion`.
+  * **Usage** : this message need to be sent by client after connecting to server in order to get the structure (inputs/outputs) of current simulation model. Here *token* is the access token obtained by *api-token-auth* API, *modelID* is the id of simulation model, for this demo it is *ProjectileMotion*.
 
   * **Example** : :js:`{action: "Authentication", payload: { token : "48f21793804566e518af0fdda0f65febc1b62427", modelID: "ProjectileMotion" }}`
 
@@ -44,7 +44,7 @@ List of message accepted by server :
 
   * Format : :js:`{action: "request_run", payload: { [input_id: string] : {value: number, dtype: string} }}`
   
-  * Usage : this message is used to request the execution of simulation model with new input values. The `input_id` can be obtained from the response of server after authenticating with **authentication message** by prefixing *"lab."* to the name of inputs
+  * Usage : this message is used to request the execution of simulation model with new input values. The *input_id* can be obtained from the response of server after authenticating with **authentication message** by prefixing *"lab."* to the name of inputs
 
   * **Example** : 
   
