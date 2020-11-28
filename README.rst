@@ -11,7 +11,8 @@ Docker Engine and Docker Compose (https://docs.docker.com/compose/install/)
 
 How to start server
 --------------------
-Run code::`docker-compose up` in root folder of project.
+
+Run :code:`docker-compose up` in root folder of project.
 
 The API and Websocket server will listen on same address *SERVER_IP:8000*, here *SERVER_IP* is the IP address of the server, for local test it should be *127.0.0.1*
 
@@ -20,14 +21,14 @@ How to use adso-server
 
 REST Api schema : 
 *************************
-There is only one API at URI code::`http://SERVER_IP:8000/api-token-auth/`, this API is used to obtain the access token to connect with Websocket server. Client need to send POST request with username and password, default is **admin** and **admin**
+There is only one API at URI :code:`http://SERVER_IP:8000/api-token-auth/`, this API is used to obtain the access token to connect with Websocket server. Client need to send POST request with username and password, default is **admin** and **admin**
 
 See *openapi-schema.yml* file for the complete schema.
 
 Websocket communication : 
 *************************
 
-Websocket server is available at code::`ws://SERVER_IP:8000/ws/notification`
+Websocket server is available at :code:`ws://SERVER_IP:8000/ws/notification`
 
 List of message accepted by server :
 
